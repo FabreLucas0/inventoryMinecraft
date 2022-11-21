@@ -1,1 +1,1 @@
-# invotoryMinecraft
+# inventoryMinecraft
