@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <TextField fx:id="toto" text="Entrée Votre Recherche !">
+         <GridPane.margin>
+            <Insets bottom="-170.0" left="185.0" right="-155.0" />
+         </GridPane.margin>
+      </TextField>
+      <Button mnemonicParsing="false" onAction="#onHelloButtonClick" text="Recherche Craft" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="50.0" left="300.0" right="-260.0" />
+         </GridPane.margin>
+      </Button>
+      <ImageView fitHeight="250.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+         <GridPane.margin>
+            <Insets left="200.0" right="-260.0" />
+         </GridPane.margin>
+         <image>
+            <Image url="@../../../logo.png" />
+         </image>
+      </ImageView>
+       
+      <Label fx:id="erreur" textFill="RED" GridPane.rowIndex="2">
+         <padding>
+            <Insets left="280.0" right="-200.0" />
+         </padding>
+         <GridPane.margin>
+            <Insets left="10.0" right="-30.0" top="-370.0" />
+         </GridPane.margin>
+      </Label>
+      <CheckBox fx:id="alpha" mnemonicParsing="false" text="Ordre alphabétique" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="200.0" right="-200.0" top="-140.0" />
+         </GridPane.margin>
+      </CheckBox>
+      <Label text="Filtres:" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="200.0" right="-150.0" top="-180.0" />
+         </GridPane.margin>
+      </Label>
+      <CheckBox fx:id="reverse" mnemonicParsing="false" text="Ordre (Décroissant)" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="350.0" right="-150.0" top="-140.0" />
+         </GridPane.margin>
+      </CheckBox>
+      <CheckBox fx:id="wiki" mnemonicParsing="false" text="Plus d'information sur le Wiki Minecraft" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="200.0" right="-200.0" top="-100.0" />
+         </GridPane.margin>
+      </CheckBox>
+      <ListView fx:id="list_craft" prefHeight="121.0" prefWidth="220.0" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets top="-50.0" />
+         </GridPane.margin>
+         <padding>
+            <Insets bottom="10.0" top="-20.0" />
+         </padding>
+      </ListView>
+   </children>
+</GridPane>
