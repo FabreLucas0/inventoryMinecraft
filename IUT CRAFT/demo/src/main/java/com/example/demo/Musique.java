@@ -13,13 +13,7 @@ public class Musique extends Thread {
     public Musique(String filename) {
         this.filename = filename;
     }
-    public void keyPressed(KeyEvent a)
-    {
-        if(a.getKeyCode()==KeyEvent.VK_ENTER)
-        {
 
-        }
-    }
 
     public void run() {
         try {
