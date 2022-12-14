@@ -8,8 +8,12 @@ import javafx.scene.control.ListView;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -76,9 +80,11 @@ public class IutCraftController {
     @FXML
     protected void onHelloButtonClick() throws IOException, ParseException {
         // Lire la valeur du champ de texte
-        Object obj = new JSONParser().parse(new FileReader("C:\\Users\\pc\\OneDrive\\Documents\\IUT\\Java\\IUT CRAFT\\demo\\src\\main\\resources\\com\\example\\demo\\merged_recipes.json"));
+        Object obj = new JSONParser().parse(new FileReader(new Fwile("demo/src/main/resources/com/example/demo/merged_recipes.json")));
         JSONObject jo = (JSONObject) obj;
         String text = toto.getText();
+        erreur.setText("recherche non trouvée");
+        //Scene recipes = new Scene(fxmlLoader.load(), 710, 600);
 
         ArrayList<String> names = new ArrayList<>();
         ArrayList<String> researchNames = new ArrayList<>();
@@ -102,10 +108,13 @@ public class IutCraftController {
         }
         researchNames.sort(comp);
         if (researchNames.isEmpty()) {
-            erreur.setText("recherche non trouvée");
+            erreur.setVisible(true);
+            list_craft.getItems().clear();
         } else if (researchNames.size() == 1) {
+            erreur.setVisible(false);
             //mettre code pour affichage craft ici
         } else {
+            erreur.setVisible(false);
             list_craft.getItems().clear();
             list_craft.getItems().addAll(researchNames);
             list_craft.setOnMouseClicked(event -> {
@@ -115,7 +124,6 @@ public class IutCraftController {
         System.out.println();
     }
 }
-
 
 
 

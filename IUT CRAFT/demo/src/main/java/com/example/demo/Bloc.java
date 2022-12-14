@@ -1,8 +1,18 @@
 package com.example.demo;
 
-public interface Bloc {
+import java.util.List;
 
-    public void cherche_nom() throws Exception;
+public class Bloc {
 
+    private List<String> nom;
 
+    public List<String> getNom() {
+        return nom;
+    }
+
+    public void ajoute(String nom){
+        this.nom.add(nom);
+        return ;
+
+    }
 }
