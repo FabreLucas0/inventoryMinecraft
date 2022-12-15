@@ -1,7 +1,15 @@
 package com.example.demo;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -10,7 +18,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Comparator;
-
+import java.util.HashMap;
 
 
 public class IutCraftController {
@@ -18,7 +26,7 @@ public class IutCraftController {
     private Label error;
 
     @FXML
-    private TextField texte;
+    private TextField txt;
 
     @FXML
     private CheckBox alpha;
@@ -32,6 +40,14 @@ public class IutCraftController {
     @FXML
     private CheckBox Shapeless;
 
+    @FXML
+    private ListView<String> ingredientsList;
+
+    @FXML
+    private Label pattern;
+
+    @FXML
+    private Label blockName;
 
     @FXML
     private ListView list_craft;
@@ -61,9 +77,9 @@ public class IutCraftController {
 
     Comparator comp = new Comparator<String>() {
         public int compare(String o1, String o2) {
-            if (alpha.selectedProperty().getValue() == true)
+            if (alpha.selectedProperty().getValue())
                 return o1.compareTo(o2);
-            else if (reverse.selectedProperty().getValue() == true) {
+            else if (reverse.selectedProperty().getValue()) {
                 return o2.compareTo(o1);
             } else {
                 return 0;
@@ -78,7 +94,7 @@ public class IutCraftController {
 
         Object obj = new JSONParser().parse(new FileReader(new File("src/main/resources/com/example/demo/merged_recipes.json")));
         JSONObject jo = (JSONObject) obj;
-        String text = texte.getText();
+        String text = txt.getText();
         error.setText("recherche non trouvée");
 
 
@@ -96,11 +112,11 @@ public class IutCraftController {
 
         researchNames.clear();
 
-        if(Shaped.selectedProperty().getValue() == true) {
+        if(Shaped.selectedProperty().getValue()) {
 
             element(text, researchNames, lshaped);
         }
-        else if(Shapeless.selectedProperty().getValue() == true) {
+        else if(Shapeless.selectedProperty().getValue()) {
             element(text, researchNames, shapeless);
         }
         else {
@@ -111,21 +127,83 @@ public class IutCraftController {
         }
 
 
-        researchNames.sort(comp);
+        // Algorithme de tri à bulles d'une liste
+        boolean trie = false;
+        while (!trie) {
+            trie = true;
+            for (int i = 0; i < researchNames.size() - 1; i++) {
+                // par ordre alphabétique
+                if (researchNames.get(i).compareTo(researchNames.get(i + 1)) > 0 && alpha.isSelected()) {
+                    String temp = researchNames.get(i);
+                    researchNames.set(i, researchNames.get(i + 1));
+                    researchNames.set(i + 1, temp);
+                    trie = false;
+                }
+                // par ordre alphabétique inverse
+                else if (researchNames.get(i + 1).compareTo(researchNames.get(i)) > 0 && reverse.isSelected()) {
+                    String temp = researchNames.get(i + 1);
+                    researchNames.set(i + 1, researchNames.get(i));
+                    researchNames.set(i, temp);
+                    trie = false;
+                }
+            }
+        }
+
+
         if (researchNames.isEmpty()) {
             bwiki.setVisible(false);
             error.setVisible(true);
             list_craft.getItems().clear();
-        } else if (researchNames.size() == 1) {
+        } else if (researchNames.contains(txt.getText())) {
             error.setVisible(false);
-            //mettre code pour affichage craft ici
+            blockName = new Label(txt.getText());
+            ingredientsList = new ListView<>();
+            FXMLLoader fxmlLoader = new FXMLLoader(new File("src/main/resources/com/example/demo/RecipesViewer.fxml").toURL());
+            GridPane root = fxmlLoader.load();
+            Scene scene = new Scene(root, 710, 600);
+            Stage recipe = new Stage();
+            HashMap<String, Object> item = new HashMap<>((HashMap<String, Object>)jo.get(txt.getText().replaceAll(" ", "_")));
+            if(item.get("type").equals("crafting_shapeless")){
+                ArrayList<Object> ingredient = (ArrayList<Object>) item.get("ingredients");
+                ObservableList<String> ingredientsShapeless = FXCollections.observableArrayList();
+                for (int i=0; i < ingredient.size(); i++){
+                    ingredientsShapeless.add(((HashMap) ingredient.get(i)).get("item").toString().replaceAll("minecraft:", "").replaceAll("_", " "));
+                }
+                ingredientsList.setItems(ingredientsShapeless);
+                root.add(ingredientsList, 1, 0);
+                blockName.setText(blockName.getText() + " (Shapeless)");
+            }
+            else{
+
+                Label pattern = new Label("");
+                for (String line: (ArrayList<String>)item.get("pattern")) {
+                    pattern.setText(pattern.getText() + line + "\n");
+                }
+
+                HashMap<String, Object> ingredient = (HashMap<String, Object>) item.get("key");
+                ObservableList<String> temp = FXCollections.observableArrayList(ingredient.keySet());
+                for(int i=0; i < temp.size(); i++){
+                    HashMap<String, Object> itemData = (HashMap<String, Object>) ingredient.get(temp.get(i));
+                    temp.set(i, temp.get(i) + " = " + itemData.get("item").toString().replaceAll("minecraft:","").replaceAll("_", " "));
+                }
+                ingredientsList.setItems(temp);
+                root.add(ingredientsList, 1,1);
+                root.add(pattern, 0, 1);
+                pattern.setFont(new Font(60));
+                pattern.setPadding(new Insets(0,0,0,70));
+                blockName.setText(blockName.getText() + " (Shaped)");
+            }
+            blockName.setFont(new Font(17));
+            root.add(blockName, 0, 0);
+            recipe.setScene(scene);
+            recipe.showAndWait();
         } else {
             bwiki.setVisible(false);
             error.setVisible(false);
             list_craft.getItems().clear();
             list_craft.getItems().addAll(researchNames);
             list_craft.setOnMouseClicked(event -> {
-                texte.setText((String) list_craft.getSelectionModel().getSelectedItem());
+                txt.setText((String) list_craft.getSelectionModel().getSelectedItem());
             });
         }
 
@@ -152,9 +230,3 @@ public class IutCraftController {
         }
     }
 }
-
-
-
-
-
-

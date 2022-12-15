@@ -12,6 +12,7 @@ class IutCraftApplicationTest {
         Recherche find = new Recherche("https://minecraft.fandom.com/wiki/");
         find.run();
         Assert.assertEquals(false,find.isInterrupted());
+        find.interrupt();
     }
     @Test
     void test_recherche_inturuption (){
@@ -33,6 +34,9 @@ class IutCraftApplicationTest {
     }
     @Test
     void test_musique(){
-
+        Musique musique = new Musique("src/main/resources/com/example/demo/Musique.wav");
+        musique.setDaemon(true);
+        Assert.assertEquals(musique.isDaemon(),true);
+        musique.interrupt();
     }
 }
