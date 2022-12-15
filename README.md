@@ -16,14 +16,14 @@ Ouvrir le fichier IutCraftApplication puis cliquer sur la flèche à coté de la
 
 Une fois lancé vous serez sur l’écran d’accueil suivant
 
-<img height=350px src="https://media.discordapp.net/attachments/1044165662978875392/1053062005659021322/image.png?width=543&height=470" height:100px/>
+<img height=350px src="https://media.discordapp.net/attachments/917928140628688896/1053072097557102714/image.png?width=543&height=470" height:100px/>
 
 <br>
 
 1) Vous pouvez rechercher un item précis en tapant le nom du dit item dans la barre de recherche
 2) Si le nom n’est pas complet, une liste vous sera proposée
 
-<img height=350px src="https://cdn.discordapp.com/attachments/927636625314431059/1053067307519324160/image.png" />
+<img height=350px src="https://media.discordapp.net/attachments/917928140628688896/1053072218319495230/image.png" />
 <br>
 
 
@@ -37,14 +37,14 @@ d. Vous pourrez trier les résultats selon si les recettes ont un schéma impré
 
 Voici un exemple :
 
-Si On prend Shapeless recipes + ordre décroissant : 
+Si On prend Shapeless recipes + ordre alphabétique inverse : 
 
-<img height=350px src="https://cdn.discordapp.com/attachments/927636625314431059/1053068654570377256/image.png" />
+<img height=350px src="https://media.discordapp.net/attachments/917928140628688896/1053072316176810035/image.png" />
 <br>
 
 Je selectionne maintenant writable book et j'appuye sur Ok :
 
-<img height=350px src="https://cdn.discordapp.com/attachments/927636625314431059/1053069851998048266/image.png" />
+<img height=350px src="https://media.discordapp.net/attachments/917928140628688896/1053072398687154196/image.png" />
 <br>
 
 Nous tombons donc sur le craft associée au Bloc sans shema cherché:
