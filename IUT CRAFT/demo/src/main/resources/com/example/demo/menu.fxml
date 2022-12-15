@@ -28,13 +28,16 @@
             <Insets bottom="-170.0" left="235.0" right="-215.0" />
          </GridPane.margin>
       </TextField>
-      <Button fx:id="boutton_recherche" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#ClickButton" prefHeight="96.0" prefWidth="152.0" textFill="#f8f8f8" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+      <Button fx:id="boutton_recherche" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#ClickButton" prefHeight="86.0" prefWidth="152.0" text="OK" textFill="#f8f8f8" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <GridPane.margin>
-            <Insets bottom="50.0" left="355.0" right="-260.0" top="208.0" />
+            <Insets bottom="50.0" left="440.0" right="-260.0" top="250.0" />
          </GridPane.margin>
          <padding>
-            <Insets top="80.0" />
+            <Insets top="20.0" />
          </padding>
+         <font>
+            <Font name="System Bold" size="54.0" />
+         </font>
       </Button>
       <ImageView fitHeight="250.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <GridPane.margin>
@@ -108,4 +111,7 @@
             <Insets left="280.0" right="-222.0" top="-20.0" />
          </GridPane.margin></Button>
    </children>
+   <GridPane.margin>
+      <Insets bottom="50.0" left="500.0" right="-260.0" top="250.0" />
+   </GridPane.margin>
 </GridPane>
