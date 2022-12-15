@@ -29,15 +29,15 @@ Une fois lancé vous serez sur l’écran d’accueil suivant
 
 a. Vous pourrez trier les résultats par ordre alphabétique en cochant la case « Ordre alphabétique »
 
-b. Vous pourrez trier les résultats par ordre inverse en cochant la case « Ordre (Décroissant) »
+b. Vous pourrez trier les résultats par ordre alphabétique inverse en cochant la case « Ordre alphabétique inverse »
 
-c. Vous pourrez trier les résultats selon si les recettes ont un schéma précis en cochant la case « Shaped recipies »
+c. Vous pourrez trier les résultats selon si les recettes ont un schéma précis en cochant la case « Shaped recipes »
 
-d. Vous pourrez trier les résultats selon si les recettes ont un schéma imprécis en cochant la case « Shapeless recipies »
+d. Vous pourrez trier les résultats selon si les recettes ont un schéma imprécis en cochant la case « Shapeless recipes »
 
 Voici un exemple :
 
-Si On prend Shapelles recipies + ordre décroissant : 
+Si On prend Shapeless recipes + ordre décroissant : 
 
 <img height=350px src="https://cdn.discordapp.com/attachments/927636625314431059/1053068654570377256/image.png" />
 <br>
@@ -47,7 +47,7 @@ Je selectionne maintenant writable book et j'appuye sur Ok :
 <img height=350px src="https://cdn.discordapp.com/attachments/927636625314431059/1053069851998048266/image.png" />
 <br>
 
-Nous tombons donc sur le craft associée au Bloc sans shema chercher :
+Nous tombons donc sur le craft associée au Bloc sans shema cherché:
 
 <img height=350px src="https://cdn.discordapp.com/attachments/927636625314431059/1053069147732463636/image.png" />
 <br>
