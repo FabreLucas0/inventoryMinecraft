@@ -12,21 +12,24 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
+import org.json.simple.parser.ParseException;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 
 
-public class IutCraftController {
+public class IutCraftController{
     @FXML
-    private Label error;
+    private Label erreur;
 
     @FXML
-    private TextField txt;
+    private Label blockName;
+
+    @FXML
+    private TextField toto;
 
     @FXML
     private CheckBox alpha;
@@ -41,21 +44,16 @@ public class IutCraftController {
     private CheckBox Shapeless;
 
     @FXML
+    private CheckBox wiki;
+
+    @FXML
+    private ListView<String> list_craft;
+
+    @FXML
     private ListView<String> ingredientsList;
 
     @FXML
     private Label pattern;
-
-    @FXML
-    private Label blockName;
-
-    @FXML
-    private ListView list_craft;
-
-    @FXML
-    private Button bwiki;
-
-
 
     public void unCheckAlph(){
         alpha.setSelected(false);
@@ -73,59 +71,41 @@ public class IutCraftController {
         Shapeless.setSelected(false);
     }
 
-
-
-    Comparator comp = new Comparator<String>() {
-        public int compare(String o1, String o2) {
-            if (alpha.selectedProperty().getValue())
-                return o1.compareTo(o2);
-            else if (reverse.selectedProperty().getValue()) {
-                return o2.compareTo(o1);
-            } else {
-                return 0;
-            }
-        }
-    };
-
+    public void clearListView() {
+        ListView<String> items = (ListView<String>) list_craft.getItems();
+        items.refresh();
+    }
 
     @FXML
-    protected void ClickButton() throws Exception {
-
-
-        Object obj = new JSONParser().parse(new FileReader(new File("src/main/resources/com/example/demo/merged_recipes.json")));
+    protected void onHelloButtonClick() throws IOException, ParseException {
+        // Lire la valeur du champ de texte
+        Object obj = new JSONParser().parse(new FileReader(new File("src/main/resources/merged_recipes.json")));
         JSONObject jo = (JSONObject) obj;
-        String text = txt.getText();
-        error.setText("recherche non trouvée");
 
+        String text = toto.getText();
+        erreur.setText("recherche non trouvée");
+        //Scene recipes = new Scene(fxmlLoader.load(), 710, 600);
 
         ArrayList<String> names = new ArrayList<>();
         ArrayList<String> researchNames = new ArrayList<>();
-        Recipies lshaped = new Shaped_recipes(new Bloc());
-        Recipies shapeless = new Shapeless_recipes(new Bloc());
-
 
         for (int i = 0; i < jo.size(); i++) {
             names.add(jo.keySet().toArray()[i].toString());
-
         }
-
 
         researchNames.clear();
-
-        if(Shaped.selectedProperty().getValue()) {
-
-            element(text, researchNames, lshaped);
-        }
-        else if(Shapeless.selectedProperty().getValue()) {
-            element(text, researchNames, shapeless);
-        }
-        else {
-            for (String element : names) {
-
-                element(text, researchNames, element);
+        for (String element : names) {
+            element = element.replaceAll("_", " ");
+            if (element.contains(text)) {
+                researchNames.add(element);
+            }
+            if (element.equals(text)) {
+                if (wiki.selectedProperty().getValue()) {
+                    Recherche find = new Recherche("https://minecraft.fandom.com/wiki/" + element);
+                    find.start();
+                }
             }
         }
-
 
         // Algorithme de tri à bulles d'une liste
         boolean trie = false;
@@ -148,21 +128,19 @@ public class IutCraftController {
                 }
             }
         }
-
-
         if (researchNames.isEmpty()) {
-            bwiki.setVisible(false);
-            error.setVisible(true);
+            erreur.setVisible(true);
             list_craft.getItems().clear();
-        } else if (researchNames.contains(txt.getText())) {
-            error.setVisible(false);
-            blockName = new Label(txt.getText());
+        }
+        else if (researchNames.contains(toto.getText())) {
+            erreur.setVisible(false);
+            blockName = new Label(toto.getText());
             ingredientsList = new ListView<>();
-            FXMLLoader fxmlLoader = new FXMLLoader(new File("src/main/resources/com/example/demo/RecipesViewer.fxml").toURL());
+            FXMLLoader fxmlLoader = new FXMLLoader(new File("src/main/resources/RecipesViewer.fxml").toURL());
             GridPane root = fxmlLoader.load();
             Scene scene = new Scene(root, 710, 600);
             Stage recipe = new Stage();
-            HashMap<String, Object> item = new HashMap<>((HashMap<String, Object>)jo.get(txt.getText().replaceAll(" ", "_")));
+            HashMap<String, Object> item = new HashMap<>((HashMap<String, Object>)jo.get(toto.getText().replaceAll(" ", "_")));
             if(item.get("type").equals("crafting_shapeless")){
                 ArrayList<Object> ingredient = (ArrayList<Object>) item.get("ingredients");
                 ObservableList<String> ingredientsShapeless = FXCollections.observableArrayList();
@@ -197,36 +175,22 @@ public class IutCraftController {
             root.add(blockName, 0, 0);
             recipe.setScene(scene);
             recipe.showAndWait();
-        } else {
-            bwiki.setVisible(false);
-            error.setVisible(false);
+
+        }
+        else {
+            System.out.println(toto.getText());
+            erreur.setVisible(false);
             list_craft.getItems().clear();
             list_craft.getItems().addAll(researchNames);
             list_craft.setOnMouseClicked(event -> {
-                txt.setText((String) list_craft.getSelectionModel().getSelectedItem());
+                toto.setText(list_craft.getSelectionModel().getSelectedItem());
             });
-        }
-
-        System.out.println();
-    }
-
-    private void element(String text, ArrayList<String> researchNames, String element) {
-        if (element.contains(text)) {
-            researchNames.add(element);
-        }
-        if (element.equals(text)) {
-            bwiki.setVisible(true);
-            bwiki.setOnAction(event -> {
-                Recherche find = new Recherche("https://minecraft.fandom.com/wiki/" + element);
-                find.start();
-            });
-        }
-    }
-
-    private void element(String text, ArrayList<String> researchNames, Recipies lshaped) throws Exception {
-        for (String element : lshaped.getNom()) {
-
-            element(text, researchNames, element);
         }
     }
 }
+
+
+
+
+
+
