@@ -114,23 +114,23 @@ public class IutCraftController {
 
 
         // bubble sort for researchNames
-        boolean trie = false;
-        while (!trie) {
-            trie = true;
+        boolean sorted = false;
+        while (!sorted) {
+            sorted = true;
             for (int i = 0; i < researchNames.size() - 1; i++) {
                 // alphabetical order
                 if (researchNames.get(i).compareTo(researchNames.get(i + 1)) > 0 && alpha.isSelected()) {
                     String temp = researchNames.get(i);
                     researchNames.set(i, researchNames.get(i + 1));
                     researchNames.set(i + 1, temp);
-                    trie = false;
+                    sorted = false;
                 }
                 // reversed alphabetical order
                 else if (researchNames.get(i + 1).compareTo(researchNames.get(i)) > 0 && reverse.isSelected()) {
                     String temp = researchNames.get(i + 1);
                     researchNames.set(i + 1, researchNames.get(i));
                     researchNames.set(i, temp);
-                    trie = false;
+                    sorted = false;
                 }
             }
         }
