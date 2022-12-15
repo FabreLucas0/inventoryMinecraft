@@ -12,7 +12,7 @@ public class IutCraftApplication extends Application {
     public void start(Stage stage) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(IutCraftApplication.class.getResource("menu.fxml"));
-        Musique musique = new Musique("*src/main/resources/com/example/demo/Musique.wav");
+        Musique musique = new Musique("src/main/resources/com/example/demo/Musique.wav");
         musique.start();
         Scene scene = new Scene(fxmlLoader.load(), 710, 600);
         scene.getStylesheets().add(String.valueOf(this.getClass().getResource("style.css")));
