@@ -4,9 +4,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root"  xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.IutCraftController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.IutCraftController">
 
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -18,17 +19,21 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TextField fx:id="toto" promptText="Entrée votre Recherche !">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="121.0" stroke="BLACK" strokeType="INSIDE" width="365.0" GridPane.rowIndex="1">
          <GridPane.margin>
-            <Insets bottom="-170.0" left="185.0" right="-155.0" />
+            <Insets left="220.0" right="-20.0" top="-70.0" />
+         </GridPane.margin></Rectangle>
+      <TextField fx:id="toto" promptText="Entrée votre Recherche !" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets bottom="-170.0" left="235.0" right="-215.0" />
          </GridPane.margin>
       </TextField>
-      <Button mnemonicParsing="false" onAction="#onHelloButtonClick" text="Recherche Craft" GridPane.rowIndex="1">
+      <Button fx:id="boutton_recherche" mnemonicParsing="false" onAction="#ClickButton" text="Recherche Craft" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <GridPane.margin>
-            <Insets bottom="50.0" left="300.0" right="-260.0" top="70.0" />
+            <Insets bottom="50.0" left="300.0" right="-260.0" top="290.0" />
          </GridPane.margin>
       </Button>
-      <ImageView fitHeight="250.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="250.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets left="200.0" right="-260.0" />
          </GridPane.margin>
@@ -47,7 +52,7 @@
       </Label>
       <CheckBox fx:id="alpha" mnemonicParsing="false" onAction="#unCheckReve" text="Ordre alphabétique" GridPane.rowIndex="1">
          <GridPane.margin>
-            <Insets left="200.0" right="-200.0" top="-120.0" />
+            <Insets left="280.0" right="-200.0" top="-80.0" />
          </GridPane.margin>
          <font>
             <Font name="System Bold Italic" size="12.0" />
@@ -55,7 +60,7 @@
       </CheckBox>
       <Label text="Filtres:" GridPane.rowIndex="1">
          <GridPane.margin>
-            <Insets left="130.0" right="-130.0" top="-180.0" />
+            <Insets left="225.0" right="-130.0" top="-160.0" />
          </GridPane.margin>
          <font>
             <Font name="System Bold Italic" size="18.0" />
@@ -63,15 +68,7 @@
       </Label>
       <CheckBox fx:id="reverse" mnemonicParsing="false" onAction="#unCheckAlph" text="Ordre (Décroissant)" GridPane.rowIndex="1">
          <GridPane.margin>
-            <Insets left="350.0" right="-150.0" top="-120.0" />
-         </GridPane.margin>
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font>
-      </CheckBox>
-      <CheckBox fx:id="wiki" mnemonicParsing="false" text="Plus d'information sur le Wiki Minecraft" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets left="200.0" right="-200.0" top="-80.0" />
+            <Insets left="415.0" right="-300.0" top="-80.0" />
          </GridPane.margin>
          <font>
             <Font name="System Bold Italic" size="12.0" />
@@ -87,18 +84,22 @@
       </ListView>
       <CheckBox fx:id="Shapeless" mnemonicParsing="false" onAction="#unCheckSh" text="Shapeless recipies" GridPane.rowIndex="1">
          <GridPane.margin>
-            <Insets left="350.0" right="-150.0" top="-160.0" />
+            <Insets left="400.0" right="-300.0" top="-120.0" />
          </GridPane.margin>
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font></CheckBox>
       <CheckBox fx:id="Shaped" mnemonicParsing="false" onAction="#unCheckShl" text="Shaped recipies" GridPane.rowIndex="1">
          <GridPane.margin>
-            <Insets left="200.0" right="-200.0" top="-160.0" />
+            <Insets left="280.0" right="-200.0" top="-120.0" />
          </GridPane.margin>
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </CheckBox>
+      <Button fx:id="bwiki" mnemonicParsing="false" prefHeight="25.0" prefWidth="253.0" text="Plus d'information sur le Wiki Minecraft" visible="false" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="280.0" right="-222.0" top="-20.0" />
+         </GridPane.margin></Button>
    </children>
 </GridPane>

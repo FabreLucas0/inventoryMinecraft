@@ -1,5 +1,5 @@
 .root {
-    -fx-background-image: url('https://64.media.tumblr.com/b003409673d60775c335729cffd0688d/200ed846fdcb1d52-b0/s540x810/7965121f79e8f7ec9b993f4ea0422e303665cec0.gif');
+    -fx-background-image: url('http://www.gifsanimes.fr/game-gifs/game-gifs/minecraft/minecraft-gifs-animes-9251180.gif');
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
@@ -11,5 +11,16 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
 
+
+}
+#boutton_recherche{
+    -fx-background-color: white;
+}
+#bwiki{
+    -fx-background-color: white;
+    -fx-background-image: url("bouton.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
 
 }

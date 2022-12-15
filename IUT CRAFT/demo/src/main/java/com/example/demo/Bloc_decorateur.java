@@ -3,7 +3,7 @@ package com.example.demo;
 public abstract class Bloc_decorateur implements Recipies{
 
     protected Bloc shaped;
-    protected Bloc shapeless;
+
 
 
 
