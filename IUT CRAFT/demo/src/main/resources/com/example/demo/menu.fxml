@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.IutCraftController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.IutCraftController">
 
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -23,15 +23,18 @@
          <GridPane.margin>
             <Insets left="220.0" right="-20.0" top="-70.0" />
          </GridPane.margin></Rectangle>
-      <TextField fx:id="toto" promptText="Entrée votre Recherche !" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <TextField fx:id="texte" promptText="Entrée votre Recherche !" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets bottom="-170.0" left="235.0" right="-215.0" />
          </GridPane.margin>
       </TextField>
-      <Button fx:id="boutton_recherche" mnemonicParsing="false" onAction="#ClickButton" text="Recherche Craft" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+      <Button fx:id="boutton_recherche" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#ClickButton" prefHeight="96.0" prefWidth="152.0" textFill="#f8f8f8" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <GridPane.margin>
-            <Insets bottom="50.0" left="300.0" right="-260.0" top="290.0" />
+            <Insets bottom="50.0" left="355.0" right="-260.0" top="208.0" />
          </GridPane.margin>
+         <padding>
+            <Insets top="80.0" />
+         </padding>
       </Button>
       <ImageView fitHeight="250.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <GridPane.margin>
@@ -42,17 +45,20 @@
          </image>
       </ImageView>
        
-      <Label fx:id="erreur" textFill="RED" GridPane.rowIndex="2">
+      <Label fx:id="error" textFill="RED" GridPane.rowIndex="2">
          <padding>
             <Insets left="280.0" right="-200.0" />
          </padding>
          <GridPane.margin>
-            <Insets left="10.0" right="-30.0" top="-370.0" />
+            <Insets left="5.0" right="-30.0" top="-370.0" />
          </GridPane.margin>
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
       </Label>
       <CheckBox fx:id="alpha" mnemonicParsing="false" onAction="#unCheckReve" text="Ordre alphabétique" GridPane.rowIndex="1">
          <GridPane.margin>
-            <Insets left="280.0" right="-200.0" top="-80.0" />
+            <Insets left="240.0" right="-200.0" top="-80.0" />
          </GridPane.margin>
          <font>
             <Font name="System Bold Italic" size="12.0" />
@@ -91,13 +97,13 @@
          </font></CheckBox>
       <CheckBox fx:id="Shaped" mnemonicParsing="false" onAction="#unCheckShl" text="Shaped recipies" GridPane.rowIndex="1">
          <GridPane.margin>
-            <Insets left="280.0" right="-200.0" top="-120.0" />
+            <Insets left="240.0" right="-200.0" top="-120.0" />
          </GridPane.margin>
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </CheckBox>
-      <Button fx:id="bwiki" mnemonicParsing="false" prefHeight="25.0" prefWidth="253.0" text="Plus d'information sur le Wiki Minecraft" visible="false" GridPane.rowIndex="1">
+      <Button fx:id="bwiki" mnemonicParsing="false" prefHeight="25.0" prefWidth="253.0" text="Plus d'information sur le Wiki Minecraft" textFill="WHITE" visible="false" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="280.0" right="-222.0" top="-20.0" />
          </GridPane.margin></Button>

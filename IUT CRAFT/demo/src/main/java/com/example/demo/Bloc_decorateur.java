@@ -12,10 +12,6 @@ public abstract class Bloc_decorateur implements Recipies{
     }
 
 
-    public void getNom(String nom) throws Exception {
-        shaped.ajoute(nom);
-        return;
-    }
 
 
 

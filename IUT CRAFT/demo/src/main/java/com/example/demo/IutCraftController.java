@@ -5,18 +5,20 @@ import javafx.scene.control.*;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Comparator;
 
 
+
 public class IutCraftController {
     @FXML
-    private Label erreur;
+    private Label error;
 
     @FXML
-    private TextField toto;
+    private TextField texte;
 
     @FXML
     private CheckBox alpha;
@@ -30,14 +32,13 @@ public class IutCraftController {
     @FXML
     private CheckBox Shapeless;
 
-    @FXML
-    private CheckBox wiki;
 
     @FXML
     private ListView list_craft;
 
     @FXML
     private Button bwiki;
+
 
 
     public void unCheckAlph(){
@@ -56,14 +57,7 @@ public class IutCraftController {
         Shapeless.setSelected(false);
     }
 
-    public void boutton_wiki(){
-        bwiki.setVisible(false);
-    }
 
-    public void clearListView() {
-        ListView<String> items = (ListView<String>) list_craft.getItems();
-        items.refresh();
-    }
 
     Comparator comp = new Comparator<String>() {
         public int compare(String o1, String o2) {
@@ -78,17 +72,15 @@ public class IutCraftController {
     };
 
 
-
-
     @FXML
     protected void ClickButton() throws Exception {
-        // Lire la valeur du champ de texte
-        Object obj = new JSONParser().parse(new FileReader(new File("demo/src/main/resources/com/example/demo/merged_recipes.json")));
-        JSONObject jo = (JSONObject) obj;
-        String text = toto.getText();
-        erreur.setText("recherche non trouvée");
 
-        //Scene recipes = new Scene(fxmlLoader.load(), 710, 600);
+
+        Object obj = new JSONParser().parse(new FileReader(new File("src/main/resources/com/example/demo/merged_recipes.json")));
+        JSONObject jo = (JSONObject) obj;
+        String text = texte.getText();
+        error.setText("recherche non trouvée");
+
 
         ArrayList<String> names = new ArrayList<>();
         ArrayList<String> researchNames = new ArrayList<>();
@@ -106,48 +98,15 @@ public class IutCraftController {
 
         if(Shaped.selectedProperty().getValue() == true) {
 
-            for (String element : lshaped.getNom()) {
-
-                if (element.contains(text)) {
-                    researchNames.add(element);
-                }
-                if (element.equals(text)) {
-                    bwiki.setVisible(true);
-                    bwiki.setOnAction(event -> {
-                        Recherche find = new Recherche("https://minecraft.fandom.com/wiki/" + element);
-                        find.start();
-                    });
-                }
-            }
+            element(text, researchNames, lshaped);
         }
         else if(Shapeless.selectedProperty().getValue() == true) {
-            for (String element : shapeless.getNom()) {
-
-                if (element.contains(text)) {
-                    researchNames.add(element);
-                }
-                if (element.equals(text)) {
-                    bwiki.setVisible(true);
-                    bwiki.setOnAction(event -> {
-                        Recherche find = new Recherche("https://minecraft.fandom.com/wiki/" + element);
-                        find.start();
-                    });
-                }
-            }
+            element(text, researchNames, shapeless);
         }
         else {
             for (String element : names) {
 
-                if (element.contains(text)) {
-                    researchNames.add(element);
-                }
-                if (element.equals(text)) {
-                    bwiki.setVisible(true);
-                    bwiki.setOnAction(event -> {
-                        Recherche find = new Recherche("https://minecraft.fandom.com/wiki/" + element);
-                        find.start();
-                    });
-                }
+                element(text, researchNames, element);
             }
         }
 
@@ -155,21 +114,42 @@ public class IutCraftController {
         researchNames.sort(comp);
         if (researchNames.isEmpty()) {
             bwiki.setVisible(false);
-            erreur.setVisible(true);
+            error.setVisible(true);
             list_craft.getItems().clear();
         } else if (researchNames.size() == 1) {
-            erreur.setVisible(false);
+            error.setVisible(false);
             //mettre code pour affichage craft ici
         } else {
-            erreur.setVisible(false);
+            bwiki.setVisible(false);
+            error.setVisible(false);
             list_craft.getItems().clear();
             list_craft.getItems().addAll(researchNames);
             list_craft.setOnMouseClicked(event -> {
-                toto.setText((String) list_craft.getSelectionModel().getSelectedItem());
+                texte.setText((String) list_craft.getSelectionModel().getSelectedItem());
             });
         }
 
         System.out.println();
+    }
+
+    private void element(String text, ArrayList<String> researchNames, String element) {
+        if (element.contains(text)) {
+            researchNames.add(element);
+        }
+        if (element.equals(text)) {
+            bwiki.setVisible(true);
+            bwiki.setOnAction(event -> {
+                Recherche find = new Recherche("https://minecraft.fandom.com/wiki/" + element);
+                find.start();
+            });
+        }
+    }
+
+    private void element(String text, ArrayList<String> researchNames, Recipies lshaped) throws Exception {
+        for (String element : lshaped.getNom()) {
+
+            element(text, researchNames, element);
+        }
     }
 }
 
