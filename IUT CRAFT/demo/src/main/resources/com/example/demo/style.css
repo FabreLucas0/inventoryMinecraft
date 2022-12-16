@@ -1,12 +1,12 @@
 .root {
-    -fx-background-image: url('http://www.gifsanimes.fr/game-gifs/game-gifs/minecraft/minecraft-gifs-animes-9251180.gif');
+    -fx-background-image: url('https://i.redd.it/r152bcq4zhv51.gif');
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
 
 }
 #list_craft{
-    -fx-background-image: url('https://www.supersoluce.com/sites/default/files/node/20195/la-pioche-dans-minecraft.gif');
+    -fx-background-image: url('steve-walk.gif');
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
@@ -25,5 +25,14 @@
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
+
+}
+.craft {
+
+    -fx-background-image: url('http://www.gifsanimes.fr/game-gifs/game-gifs/minecraft/minecraft-gifs-animes-9251180.gif');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    -fx-text-fill: white;
 
 }
