@@ -77,7 +77,7 @@ public class IutCraftController {
     protected void ClickButton() throws Exception {
 
         // parsing JSON of all the recipes
-        Object obj = new JSONParser().parse(new FileReader(new File("src/main/resources/com/example/demo/merged_recipes.json")));
+        Object obj = new JSONParser().parse(new FileReader(new File("demo/src/main/resources/com/example/demo/merged_recipes.json")));
         JSONObject jo = (JSONObject) obj;
 
         // setting up variables
