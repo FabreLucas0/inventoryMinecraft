@@ -150,7 +150,7 @@ public class IutCraftController {
             ingredientsList = new ListView<>();
 
             //creating the new page
-            FXMLLoader fxmlLoader = new FXMLLoader(new File("src/main/resources/com/example/demo/RecipesViewer.fxml").toURL());
+            FXMLLoader fxmlLoader = new FXMLLoader(new File("demo/src/main/resources/com/example/demo/RecipesViewer.fxml").toURL());
             GridPane root = fxmlLoader.load();
             Scene scene = new Scene(root, 710, 600);
             Stage recipe = new Stage();
